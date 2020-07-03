@@ -23,26 +23,35 @@ class ScheduleController extends Controller
     	$services = Service::where('id', $service)->get();
     	$bookings = Booking::where('id_bookings_state', 1)->get();
 
-    	/**
-	     * Arreglo con el numero de dias a mostrar
-	     */
+        /*Se almacena el objeto services en service*/
+        foreach ($services as $service) {
+            $service = $service;
+        }
+
+        $d = 0; /*Se asigna variable para realizar un for que recorra un numero de dias especificos*/
+
+        /*Dependiendo de la duracion del servicio que el cliente este solicitando se asignara valor de 1 a la variable d para que el recorrido de los dias comience a partir del dia siguiente*/
+    	if ($service->id_duration == 1 && date('G') >= date('G', strtotime('15:00'))) {
+            $d = 1;
+        }
+        if ($service->id_duration == 2 && date('G') >= date('G', strtotime('14:00'))) {
+            $d = 1;
+        }
+
+        /*Arreglo con el numero de dias*/	   
     	$days = array();
-    	for ($i=0; $i <=4 ; $i++) { 
+    	for ($i=$d; $i <=4 ; $i++) { 
     		$days[] = $i;
     	}
 
-        /**
-	     * Locale a español y Fechas en formato plano para ser comparado con las fechas de bookings
-	     */
+        /*Se establece locale a español y fechas recorriendo los dias definidos en la variable days para ser comparado con las fechas de bookings*/	     
     	setlocale(LC_TIME, 'es_CO.utf8');
     	$dates = array();
     	foreach ($days as $day) {
     		$dates[] = mktime(0, 0, 0, date("m")  , date("d")+$day, date("Y"));
     	}
 
-        /**
-         * Arreglo para las horas del dia
-         */
+        /*Arreglo para las horas del dia*/       
         $hours = array();
         for ($i=8; $i <=17 ; $i++) { 
             $hours[] = [ 'hora' =>$i, 'state' => 'disponible'];
