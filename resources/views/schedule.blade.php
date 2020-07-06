@@ -12,6 +12,15 @@
           </button>
         </div>
     @endif
+
+    @if (session('datetimedup'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('datetimedup') }}
+        	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            	<span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    @endif
 		
 		<!-- Título con el nombre e informacion del servicio y la hora actual -->
 		<div class="col-md-8 mb-3 text-center h2 text-success">

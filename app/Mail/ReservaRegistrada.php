@@ -33,11 +33,8 @@ class ReservaRegistrada extends Mailable
     public function build()
     {
         setlocale(LC_TIME, 'es_CO.utf8'); // Locale para cambiar el lenguaje a español
-        
-        return $this->from([
-                        'address' => 'no-reply@appgenda.local',
-                        'name' => 'Appgenda',
-                    ])
+
+        return $this->from('no-reply@appgenda.local','Appgenda')
                     ->subject($this->booking['service'] . ' para ' . strftime('%A %e %B',strtotime($this->booking['date'])))
                     ->view('emails.reserva-registrada');
     }

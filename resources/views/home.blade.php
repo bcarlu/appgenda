@@ -25,7 +25,11 @@
             <!-- Valida si el usuario ya ha programado citas --> 
             @foreach($bookings as $booking) @endforeach
             @if(isset($booking) && strtotime($booking->date) < strtotime(date('Ymd')))
-                <div class="alert alert-warning alert-dismissible fade show h3 text-center" role="alert">Estás al dia, que tal si agendas una nueva cita ahora! :)</div>
+                <div class="alert alert-warning alert-dismissible fade show h3 text-center" role="alert">Estás al dia, que tal si agendas una nueva cita ahora! :)
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             @endif
             
             <!-- Valida si el usuario tiene citas pendientes -->

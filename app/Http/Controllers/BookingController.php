@@ -19,16 +19,17 @@ class BookingController extends Controller
 
     public function store(Request $request)
     {
-        // Se definen las variables
+        // Se definen las variables         
         $user = $request->user()->id;
         $nameuser = $request->user()->name;
+        $emailuser = $request->user()->email;            
         $service = $request->service;
         $employee = $request->employee;
         $date = date('Y-m-d', $request->date);
-        $start = $request->start;
+        $start = $request->start;           
         $duration = $request->duration;
         $end = $start + $duration;
-        $idcategory = EmployeeCategory::where('id_employee', $employee)->get('id_category');
+        $idcategory = Service::where('id', $service)->get('id_category');
         
         foreach ($idcategory as $category) {
             $category = $category->id_category;
@@ -40,12 +41,31 @@ class BookingController extends Controller
         if (count($bookings) > 0) { // Si ya existen registros que coincidan con la fecha, hora y empleado se redirecciona a la pagina de schedule y se emite mensaje de error.
             return redirect('/home/categories' . '/' . $category . '/services' . '/' . $service )->with('error', 'Ups, alguien acaba de tomar el cupo, por favor escoge otra hora');
         }
+
+        // Tambien se valida si el usuario ya tiene alguna cita para esa misma fecha y hora
+        $bookingsuser = Booking::where('date', $date)->whereBetween('start', [$start . ':00', $end . ':00'])->where('id_user', $user)->get();
+
+        if (count($bookingsuser) > 0){ // Si ya tiene alguna cita para la misma fecha y hora
+            
+            foreach ($bookingsuser as $bookinguser) {
+                $bookinguser = $bookinguser->id_service;
+            }
+
+            // Se busca el nombre del servicio para mostrarlo en el mensaje de alerta
+            $bookingservicename = Service::where('id', $bookinguser)->get('name');
+            foreach ($bookingservicename as $servicename) {
+                $servicename = $servicename->name;
+            }
+            
+            return redirect('/home/categories' . '/' . $category . '/services' . '/' . $service )->with('datetimedup', 'Oh oh, ya tienes programado '.
+                        $servicename .' para la misma fecha y hora. Por favor escoge una hora que no se cruce con tu cita actual. Gracias!');
+        }
         
         else { // Si no hay citas registradas
 
-            // Se registra en la base de datos
+            // Se asocian datos recibidos a los campos del modelo booking
             $booking = new Booking();            
-            /*$booking->id_service = $service;
+            $booking->id_service = $service;
             $booking->id_employee = $employee;
             $booking->id_user = $user;
             $booking->id_bookings_state = 1;
@@ -53,9 +73,9 @@ class BookingController extends Controller
             $booking->start = $start . ':00';
             $booking->end = $end . ':00';
 
-            $booking->save();*/
+            $booking->save(); // Y se guardan los registros en la base de datos.
 
-            // Se genera array data para enviar informacion al model mailable y este a su vez a la vista del mail
+            // Se genera array data para enviar informacion al model mailable y este a su vez a la vista del email
             $servicename = Service::where('id', $service)->get('name');
             foreach ($servicename as $service) {
                 $service = $service->name;
@@ -77,7 +97,7 @@ class BookingController extends Controller
             ];
 
             // Se envia notificacion con los datos de la cita.
-            Mail::to('briancardona87@gmail.com')->queue(new ReservaRegistrada($data));
+            Mail::to($emailuser)->queue(new ReservaRegistrada($data));
 
             // Y se redirecciona al home con mensaje de success.
             return redirect('/home')->with('success', 'Su reserva se ha registrado con exito! Nos vemos pronto ;)');
