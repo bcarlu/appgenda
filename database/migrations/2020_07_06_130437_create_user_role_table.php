@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmployeeCateroryTable extends Migration
+class CreateUserRoleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateEmployeeCateroryTable extends Migration
      */
     public function up()
     {
-        Schema::create('employee_category', function (Blueprint $table) {
+        Schema::create('user_role', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_employee')->constrained('employees');
-            $table->foreignId('id_category')->constrained('categories');
+            $table->foreignId('id_role')->constrained('roles');
+            $table->foreignId('id_user')->constrained('users');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateEmployeeCateroryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employee_category');
+        Schema::dropIfExists('user_role');
     }
 }

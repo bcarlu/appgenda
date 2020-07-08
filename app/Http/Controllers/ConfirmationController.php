@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Service;
 use App\Employee;
+use App\Booking;
 
 class ConfirmationController extends Controller
 {
@@ -13,22 +14,31 @@ class ConfirmationController extends Controller
         $this->middleware('auth');
     }
 
-    public function index($service, $employee, $date, $start)
+    public function index(Request $request)
     {
-    		$services = Service::where('id', $service)->get();
-    		$employees = Employee::where('id', $employee)->get();
-    		$date = $date;
-    		$start = $start;
+    		$user = $request->user()->id;
+        $services = Service::where('id',$request->service)->get();
+        $employees = Employee::where('id',$request->employee)->get();
+        $date = $request->date;
+        $start = $request->start;
+        $duration = $request->duration;
+        $end = $start + $duration;
+        $category = Service::where('id', $request->service)->first('id_category');
 
-    		setlocale(LC_TIME, 'es_CO.utf8'); // Se establece locale en español
+        
+        setlocale(LC_TIME, 'es_CO.utf8'); // Se establece locale en español
 
-  			$data = [
-  					'services' => $services,
-  					'employees' => $employees,
-						'date' => $date,
-						'start' => $start,
-  			];
+        $data = [
+          'services' => $services,
+          'employees' => $employees,
+          'date' => $date,
+          'start' => $start,
+        ];
 
-    		return view('confirmation')->with($data);
-    }
-}
+        return view('confirmation')->with($data);
+
+    } //end function index
+
+  } //end class  
+    
+

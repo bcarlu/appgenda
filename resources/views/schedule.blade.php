@@ -90,13 +90,13 @@
 									@if($hour['state'] == 'disponible') <!-- if horas disponibles -->
 
 										@if(date('Ymd', $date) == date('Ymd') && $hour['hora'] > date('G', mktime(date('G')+2, 0, 0, date('m'), date('d'), date('Y')))) <!-- Si las horas son del mismo dia se muestra disponibilidad 2 horas adelante de la hora actual -->
-											<a href="{{ url('confirmation') . '/' . $service->id . '/' . $employee->id . '/' . $date . '/' . $hour['hora']}}" class="btn btn-success mr-2">
+											<a href="{{ url('confirmation') . '/' . $service->id . '/' . $employee->id . '/' . $date . '/' . $hour['hora'] . '/' . $service->id_duration }}" class="btn btn-success mr-2">
 											{{ date('ga', strtotime($hour['hora'] . ':00')) }}
 											</a>
 										@endif 
 
 										@if(date('Ymd', $date) > date('Ymd')) <!-- Si la reserva es para el dia siguiente o mayor se muestra el horario normal -->
-											<a href="{{ url('confirmation') . '/' . $service->id . '/' . $employee->id . '/' . $date . '/' . $hour['hora']}}" class="btn btn-success mr-2">
+											<a href="{{ url('confirmation') . '/' . $service->id . '/' . $employee->id . '/' . $date . '/' . $hour['hora'] . '/' . $service->id_duration }}" class="btn btn-success mr-2">
 											{{ date('ga', strtotime($hour['hora'] . ':00')) }}
 											</a>
 										@endif

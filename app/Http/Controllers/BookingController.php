@@ -41,25 +41,6 @@ class BookingController extends Controller
         if (count($bookings) > 0) { // Si ya existen registros que coincidan con la fecha, hora y empleado se redirecciona a la pagina de schedule y se emite mensaje de error.
             return redirect('/home/categories' . '/' . $category . '/services' . '/' . $service )->with('error', 'Ups, alguien acaba de tomar el cupo, por favor escoge otra hora');
         }
-
-        // Tambien se valida si el usuario ya tiene alguna cita para esa misma fecha y hora
-        $bookingsuser = Booking::where('date', $date)->whereBetween('start', [$start . ':00', $end . ':00'])->where('id_user', $user)->get();
-
-        if (count($bookingsuser) > 0){ // Si ya tiene alguna cita para la misma fecha y hora
-            
-            foreach ($bookingsuser as $bookinguser) {
-                $bookinguser = $bookinguser->id_service;
-            }
-
-            // Se busca el nombre del servicio para mostrarlo en el mensaje de alerta
-            $bookingservicename = Service::where('id', $bookinguser)->get('name');
-            foreach ($bookingservicename as $servicename) {
-                $servicename = $servicename->name;
-            }
-            
-            return redirect('/home/categories' . '/' . $category . '/services' . '/' . $service )->with('datetimedup', 'Oh oh, ya tienes programado '.
-                        $servicename .' para la misma fecha y hora. Por favor escoge una hora que no se cruce con tu cita actual. Gracias!');
-        }
         
         else { // Si no hay citas registradas
 
@@ -75,7 +56,7 @@ class BookingController extends Controller
 
             $booking->save(); // Y se guardan los registros en la base de datos.
 
-            // Se genera array data para enviar informacion al model mailable y este a su vez a la vista del email
+            // Se genera array data para enviar informacion al modelo mailable y este a su vez a la vista emails.reserva-registrada
             $servicename = Service::where('id', $service)->get('name');
             foreach ($servicename as $service) {
                 $service = $service->name;

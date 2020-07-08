@@ -27,6 +27,6 @@ Route::get('home/categories/{category}/services', 'ServiceController@index');
 
 Route::get('home/categories/{category}/services/{service}', 'ScheduleController@index');
 
-Route::get('confirmation/{service}/{employee}/{date}/{start}', 'ConfirmationController@index');
+Route::get('confirmation/{service}/{employee}/{date}/{start}/{duration}', 'ConfirmationController@index');
 
 Route::get('schedule/store/{service}/{employee}/{date}/{start}/{duration}', 'BookingController@store');

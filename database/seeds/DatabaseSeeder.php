@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             EmployeeCategoryTableSeeder::class,
             ServicesTableSeeder::class,
             BookingsTableSeeder::class,
+            RolesTableSeeder::class,
         ]);
     }
 }
