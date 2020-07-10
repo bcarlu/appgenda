@@ -33,15 +33,22 @@
             @endif
             
             <!-- Valida si el usuario tiene citas pendientes -->
-            @foreach($bookings as $booking)                
+            @foreach($bookings as $booking)     
                 @if(strtotime($booking->date) >= strtotime(date('Ymd')) && $booking->id_bookings_state == 1)
                     <div class="card mb-3">
                        <div class="card-header text-center">
-                            <span class="h4">@foreach($services as $service)
-                                 @if($booking->id_service == $service->id)
-                                    {{ $service->name }}
-                                 @endif
-                            @endforeach</span>                    
+                            <span class="h4">
+                                @foreach($services as $service)
+                                    @if($booking->id_service == $service->id)
+                                        {{ $service->name }}
+                                    @endif
+                                @endforeach
+                            </span>
+
+                            <!-- Si la cita es para la fecha actual pero ya paso la hora -->
+                            @if(strtotime($booking->date) == strtotime(date('Ymd')) && date('G', strtotime($booking->start)) < date('G'))
+                               <span class="badge badge-success float-right">Finalizada</span>
+                            @endif                   
                         </div>
 
                         <div class="card-body">                      

@@ -32,6 +32,7 @@ class HomeController extends Controller
         $id = Auth::user()->id;        
         $bookings = Booking::where('id_user', $id)
             ->orderBy('date', 'asc')
+            ->orderBy('start', 'asc')
             ->get();
         $employees = Employee::all();
         $services = Service::all();
@@ -42,6 +43,9 @@ class HomeController extends Controller
             'employees'   => $employees,
             'services' => $services,
         ];
+
+        // Se establece la zona horaria por defecto
+        date_default_timezone_set('America/Bogota');
 
         // Establece el locale a español para enviar a la vista
         setlocale(LC_TIME, 'es_CO.utf8');

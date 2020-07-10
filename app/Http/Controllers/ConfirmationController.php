@@ -25,7 +25,38 @@ class ConfirmationController extends Controller
         $end = $start + $duration;
         $category = Service::where('id', $request->service)->first('id_category');
 
-        
+        // Antes de redireccionar a la vista de confirmacion se valida si el usuario ya tiene alguna cita que se cruce con esa misma fecha y hora que va a programar
+        $bookingsOfUser = Booking::where('date', date('Y-m-d', $date))->where('id_user', $user)->where('id_bookings_state', 1)->get();  
+
+          foreach ($bookingsOfUser as $bookinguser) {            
+
+              // Se establecen variables para trabajar con las condiciones if
+              $startSchedule = strftime("%H:%M:%S", strtotime($start . ':00:00'));
+              $endSchedule = strftime("%H:%M:%S", strtotime($end . ':00:00'));
+              $serviceSelected = Service::where('id',$request->service)->first('id');
+              $nameScheduledService = Service::where('id',$bookinguser->id_service)->get();
+              $redirect = redirect('/home/categories' . '/' . $category->id_category . '/services' . '/' . $serviceSelected->id )->with('error', 'Oh oh, ya tiene programada una cita en ese rango de horas. Puede escoger otra hora u otro dia.');
+
+              if ($startSchedule == $bookinguser->start) {
+                
+                return $redirect;
+
+              }
+
+              if ($startSchedule > $bookinguser->start && $startSchedule < $bookinguser->end) {
+                
+                return $redirect;
+
+              }
+
+              if ($startSchedule < $bookinguser->start && $endSchedule > $bookinguser->start) {
+                
+                return $redirect;
+
+              }
+
+          }
+
         setlocale(LC_TIME, 'es_CO.utf8'); // Se establece locale en español
 
         $data = [
