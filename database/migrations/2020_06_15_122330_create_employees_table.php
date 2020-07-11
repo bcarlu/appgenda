@@ -14,8 +14,8 @@ class CreateEmployeesTable extends Migration
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('id_state')->constrained('employees_state');
+            $table->id();            
+            $table->foreignId('id_status')->constrained('employee_status');
             $table->string('name');
             $table->timestamps();
         });

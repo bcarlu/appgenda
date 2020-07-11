@@ -49,7 +49,7 @@ class BookingController extends Controller
             $booking->id_service = $service;
             $booking->id_employee = $employee;
             $booking->id_user = $user;
-            $booking->id_bookings_state = 1;
+            $booking->id_status = 1;
             $booking->date = $date;
             $booking->start = $start . ':00';
             $booking->end = $end . ':00';

@@ -18,7 +18,7 @@ class CreateBookingsTable extends Migration
             $table->foreignId('id_service')->constrained('services');
             $table->foreignId('id_employee')->constrained('employees');
             $table->foreignId('id_user')->constrained('users');
-            $table->foreignId('id_bookings_state')->constrained('booking_state');
+            $table->foreignId('id_status')->constrained('booking_status');
             $table->date('date');
             $table->time('start');
             $table->time('end');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Booking;
+use App\BookingStatus;
 use App\Employee;
 use App\Service;
 use Illuminate\Support\Facades\Auth;
@@ -34,6 +35,7 @@ class HomeController extends Controller
             ->orderBy('date', 'asc')
             ->orderBy('start', 'asc')
             ->get();
+        $bookingStatus = BookingStatus::all();
         $employees = Employee::all();
         $services = Service::all();
 
@@ -42,6 +44,7 @@ class HomeController extends Controller
             'bookings'  => $bookings,
             'employees'   => $employees,
             'services' => $services,
+            'bookingStatus' => $bookingStatus,
         ];
 
         // Se establece la zona horaria por defecto

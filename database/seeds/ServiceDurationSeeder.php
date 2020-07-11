@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ServicesDurationSeeder extends Seeder
+class ServiceDurationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +12,7 @@ class ServicesDurationSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('services_duration')->insert([
+        DB::table('service_duration')->insert([
         	['quantity' => 1],
         	['quantity' => 2],
         	['quantity' => 3],

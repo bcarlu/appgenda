@@ -16,7 +16,7 @@ class CreateServicesTable extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_category')->constrained('categories');
-            $table->foreignId('id_duration')->constrained('services_duration');
+            $table->foreignId('id_duration')->constrained('service_duration');
             $table->string('name');
             $table->integer('price');
             $table->timestamps();

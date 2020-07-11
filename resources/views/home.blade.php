@@ -34,7 +34,7 @@
             
             <!-- Valida si el usuario tiene citas pendientes -->
             @foreach($bookings as $booking)     
-                @if(strtotime($booking->date) >= strtotime(date('Ymd')) && $booking->id_bookings_state == 1)
+                @if(strtotime($booking->date) >= strtotime(date('Ymd')))
                     <div class="card mb-3">
                        <div class="card-header text-center">
                             <span class="h4">
@@ -45,10 +45,13 @@
                                 @endforeach
                             </span>
 
-                            <!-- Si la cita es para la fecha actual pero ya paso la hora -->
-                            @if(strtotime($booking->date) == strtotime(date('Ymd')) && date('G', strtotime($booking->start)) < date('G'))
-                               <span class="badge badge-success float-right">Finalizada</span>
-                            @endif                   
+                            <!-- Etiqueta con el estado de la cita -->
+                            @foreach($bookingStatus as $status) 
+                                @if($booking->id_status == $status->id)
+                                   <span class="badge float-right @if($booking->id_status == 1) badge-success @else badge-danger @endif">{{ $status->status }}</span>
+                                @endif
+                            @endforeach
+                                               
                         </div>
 
                         <div class="card-body">                      

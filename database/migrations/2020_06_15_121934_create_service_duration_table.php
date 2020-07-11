@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBookingStateTable extends Migration
+class CreateServiceDurationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateBookingStateTable extends Migration
      */
     public function up()
     {
-        Schema::create('booking_state', function (Blueprint $table) {
+        Schema::create('service_duration', function (Blueprint $table) {
             $table->id();
-            $table->string('state');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateBookingStateTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('booking_state');
+        Schema::dropIfExists('service_duration');
     }
 }

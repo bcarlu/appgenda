@@ -26,7 +26,7 @@ class ConfirmationController extends Controller
         $category = Service::where('id', $request->service)->first('id_category');
 
         // Antes de redireccionar a la vista de confirmacion se valida si el usuario ya tiene alguna cita que se cruce con esa misma fecha y hora que va a programar
-        $bookingsOfUser = Booking::where('date', date('Y-m-d', $date))->where('id_user', $user)->where('id_bookings_state', 1)->get();  
+        $bookingsOfUser = Booking::where('date', date('Y-m-d', $date))->where('id_user', $user)->where('id_status', 1)->get();  
 
           foreach ($bookingsOfUser as $bookinguser) {            
 

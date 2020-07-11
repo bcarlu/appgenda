@@ -19,9 +19,9 @@ class ScheduleController extends Controller
     public function index($category, $service)
     {
     	$employeesCategories = EmployeeCategory::where('id_category', $category)->get();
-    	$employees = Employee::where('id_state', 1)->get();
+    	$employees = Employee::where('id_status', 1)->get();
     	$services = Service::where('id', $service)->get();
-    	$bookings = Booking::where('id_bookings_state', 1)->get();
+    	$bookings = Booking::where('id_status', 1)->get();
 
         /*Se almacena el objeto services en service*/
         foreach ($services as $service) {

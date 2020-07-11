@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmployeesStateTable extends Migration
+class CreateBookingStatusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateEmployeesStateTable extends Migration
      */
     public function up()
     {
-        Schema::create('employees_state', function (Blueprint $table) {
+        Schema::create('booking_status', function (Blueprint $table) {
             $table->id();
-            $table->string('state');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateEmployeesStateTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employees_state');
+        Schema::dropIfExists('booking_status');
     }
 }

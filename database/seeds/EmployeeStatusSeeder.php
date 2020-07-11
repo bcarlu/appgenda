@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class EmployeesStateSeeder extends Seeder
+class EmployeeStatusSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,9 +12,9 @@ class EmployeesStateSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('employees_state')->insert([
-        	['state' => 'activo'],
-        	['state' => 'inactivo'],
+        DB::table('employee_status')->insert([
+        	['status' => 'activo'],
+        	['status' => 'inactivo'],
         ]);
     }
 }
