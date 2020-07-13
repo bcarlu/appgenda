@@ -13,10 +13,13 @@ class BookingStatusTableSeeder extends Seeder
     public function run()
     {
       DB::table('booking_status')->insert([
-      	['status' => 'pendiente'],
-      	['status' => 'reagendada'],
-      	['status' => 'cancelada'],
-      	['status' => 'finalizada'],
+      	['status' => 'Pendiente'],
+        ['status' => 'En proceso'],
+      	['status' => 'Reagendada'],
+      	['status' => 'Cancelada'],
+      	['status' => 'Realizada'],
+        ['status' => 'Incumplida'],
+        ['status' => 'Fin Automatico'],
       ]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\DB;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,7 +25,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        // Se programa tarea para cambiar de estado las citas que aun estan pendientes y ya pasaron 
+        $schedule->call(function () {
+            DB::table('bookings')->where('id_status', 1)->where('date','<',date('Y-m-d'))->update(['id_status' => 6]);
+        })->dailyAt('10:00');
     }
 
     /**
