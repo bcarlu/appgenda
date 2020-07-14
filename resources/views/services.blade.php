@@ -20,7 +20,7 @@
 				    
 				  	</h5>
 				    <p class="card-text">Descripción detallada del servicio.</p>
-				    <a href="{{ url('/home/categories') . '/' . $service->id_category . ('/services') . '/' . $service->id  }}" class="btn btn-primary">Escoger</a>
+				    <a href="{{ url('/home/categories') . '/' . $service->id_category . '/services/' . $service->id . '/schedule' }}" class="btn btn-primary">Escoger</a>
 				  </div>
 				</div>
 				@endforeach

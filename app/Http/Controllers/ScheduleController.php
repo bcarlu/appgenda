@@ -5,6 +5,7 @@ use App\Booking;
 use App\EmployeeCategory;
 use App\Employee;
 use App\Service;
+use App\Holiday;
 
 
 use Illuminate\Http\Request;
@@ -16,11 +17,11 @@ class ScheduleController extends Controller
         $this->middleware('auth');
     }
 
-    public function index($category, $service)
+    public function index(Request $request)
     {
-    	$employeesCategories = EmployeeCategory::where('id_category', $category)->get();
+        $employeesCategories = EmployeeCategory::where('id_category', $request->category)->get();
     	$employees = Employee::where('id_status', 1)->get();
-    	$services = Service::where('id', $service)->get();
+    	$services = Service::where('id', $request->service)->get();
     	$bookings = Booking::where('id_status', 1)->get();
 
         /*Se almacena el objeto services en service*/
@@ -30,7 +31,7 @@ class ScheduleController extends Controller
 
         $d = 0; /*Se asigna variable para realizar un for que recorra un numero de dias especificos*/
 
-        /*Dependiendo de la duracion del servicio que el cliente este solicitando se asignara valor de 1 a la variable d para que el recorrido de los dias comience a partir del dia siguiente*/
+        /* Si son las 14:00 o 15:00, dependiendo de la duracion del servicio que el cliente este solicitando, se asigna el valor de $d a 1 para ocultar de la vista schedule el dia actual y continuar a del dia siguiente*/
     	if ($service->id_duration == 1 && date('G') >= date('G', strtotime('15:00'))) {
             $d = 1;
         }
@@ -38,26 +39,27 @@ class ScheduleController extends Controller
             $d = 1;
         }
 
-        /*Arreglo con el numero de dias*/	   
-    	$days = array();
-    	for ($i=$d; $i <=4 ; $i++) { 
+        /*Arreglo para recorrer los dias*/
+    	for ($i=$d; $i <=6 ; $i++) { 
     		$days[] = $i;
+    	}        
+    	
+        /*Se crea array dates cargando el array days para crear las fechas*/
+        foreach ($days as $day) {
+    		$dates[] = ['fecha' => mktime(0, 0, 0, date("m")  , date("d")+$day, date("Y")), 'status' => 'laboral'];           
     	}
-
-        /*Se establece locale a español y fechas recorriendo los dias definidos en la variable days para ser comparado con las fechas de bookings*/	     
-    	setlocale(LC_TIME, 'es_CO.utf8');
-    	$dates = array();
-    	foreach ($days as $day) {
-    		$dates[] = mktime(0, 0, 0, date("m")  , date("d")+$day, date("Y"));
-    	}
+ 
+        /*Se crea array para establecer los dias no laborales y festivos*/
+        $festivos = Holiday::all();
 
         /*Arreglo para las horas del dia*/       
-        $hours = array();
         for ($i=8; $i <=17 ; $i++) { 
-            $hours[] = [ 'hora' =>$i, 'state' => 'disponible'];
-
+            $hours[] = [ 'hora' =>$i, 'status' => 'disponible'];
         }
         
+        /*Se establece locale a español*/        
+        setlocale(LC_TIME, 'es_CO.utf8');
+
     	$data = [
             'employeesCategories'  => $employeesCategories,
             'employees' => $employees,
@@ -65,6 +67,7 @@ class ScheduleController extends Controller
             'bookings' => $bookings,
             'dates' => $dates,
             'hours' => $hours,
+            'festivos' => $festivos,
         ];
 
     	return view('schedule')->with($data);
