@@ -22,7 +22,7 @@ class BookingController extends Controller
         // Se definen las variables         
         $user = $request->user()->id;
         $nameuser = $request->user()->name;
-        $emailuser = $request->user()->email;            
+        $emailuser = $request->user();            
         $service = $request->service;
         $employee = $request->employee;
         $date = date('Y-m-d', $request->date);
@@ -78,9 +78,9 @@ class BookingController extends Controller
             ];
 
             // Se envia notificacion con los datos de la cita.
-            Mail::to($emailuser)->queue(new ReservaRegistrada($data));
+            Mail::to($emailuser)->send(new ReservaRegistrada($data));
 
-            // Y se redirecciona al home con mensaje de success.
+            // Y se redirecciona al home con mensaje de exito.
             return redirect('/home')->with('success', 'Su reserva se ha registrado con exito! Nos vemos pronto ;)');
         }
     }

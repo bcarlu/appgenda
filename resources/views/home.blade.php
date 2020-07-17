@@ -19,7 +19,7 @@
         <div class="col-md-8">
             <!--Valida si el usuario no tiene citas-->    
             @if(count($bookings) == 0)
-                <div class="alert alert-warning alert-dismissible fade show h3 text-center" role="alert">Aún no haz agendado tu primera cita, Animate a reservar una ahora! :)</div>
+                <div class="alert alert-success h3 text-center" role="alert">Hola y bienvenido a Appgenda, que te parece si empezamos agendado tu primera cita, Animate, es facil y rapido! :)</div>
             @endif
             
             <!-- Valida si el usuario ya ha programado citas --> 

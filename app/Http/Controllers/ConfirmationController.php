@@ -35,7 +35,7 @@ class ConfirmationController extends Controller
               $endSchedule = strftime("%H:%M:%S", strtotime($end . ':00:00'));
               $serviceSelected = Service::where('id',$request->service)->first('id');
               $nameScheduledService = Service::where('id',$bookinguser->id_service)->get();
-              $redirect = redirect('/home/categories' . '/' . $category->id_category . '/services' . '/' . $serviceSelected->id )->with('error', 'Oh oh, ya tiene programada una cita en ese rango de horas. Puede escoger otra hora u otro dia.');
+              $redirect = redirect('/home/categories' . '/' . $category->id_category . '/services/' . $serviceSelected->id . '/schedule' )->with('error', 'Oh oh, ya tiene programada una cita en ese rango de horas. Puede escoger otra hora u otro dia.');
 
               if ($startSchedule == $bookinguser->start) {
                 

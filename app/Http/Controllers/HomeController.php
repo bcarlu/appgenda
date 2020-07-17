@@ -19,7 +19,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth','verified']);
     }
 
     /**
@@ -29,7 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // Reservas hechas por el usuario actual
+        // Se definen propiedades para almacenar las citas hechas por el usuario actual
         $id = Auth::user()->id;        
         $bookings = Booking::where('id_user', $id)
             ->orderBy('date', 'asc')
@@ -39,7 +39,7 @@ class HomeController extends Controller
         $employees = Employee::all();
         $services = Service::all();
 
-
+        // Array data almacena en una sola variable los datos enviados a la vista
         $data = [
             'bookings'  => $bookings,
             'employees'   => $employees,

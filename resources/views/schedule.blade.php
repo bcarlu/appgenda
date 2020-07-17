@@ -22,7 +22,7 @@
 			<p class="h4">Son las {{ date('g:ia') }}</p>
 		</div>
 		
-		<!-- Descripción -->
+		<!-- Aca se escribe la descripcion de la pagina para el cliente -->
 		<div class="h4 col-md-8 mb-3 text-center alert-warning">
 			Escoja la fecha, esteticista y hora que desee
 		</div>

@@ -13,11 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Peticion inicial, redirecciona a la vista welcome
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Rutas para login y registro con la propiedad de verificacion habilitada
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
