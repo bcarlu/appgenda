@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\User;
+use App\Role;
 
 class UsersTableSeeder extends Seeder
 {
@@ -11,20 +13,17 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class,9)->create();
 
-        App\User::create([
-        	'name' => 'Brian',
-        	'email' => 'brian@correo.com',
-        	'password' => bcrypt('12345678'),
-        	'phone' => '123',
-        ]);
+        factory(App\User::class,9)->create(); // Se crean 9 usuarios con las propiedades definidas en UserFactory con datos ficticios
 
-        App\User::create([
-            'name' => 'Luisa',
-            'email' => 'luisa@correo.com',
+        // Se crea un usuario con propiedades definidas para poder ingresar directamente a la app y para definirlo con el role Administrador
+        DB::table('users')->insert([
+            'name' => 'Brian',
+            'email' => 'brian@correo.com',
+            'email_verified_at' => now(),
             'password' => bcrypt('12345678'),
-            'phone' => '321',
+            'id_role' => 1,
+            'phone' => '123',
         ]);
     }
 }

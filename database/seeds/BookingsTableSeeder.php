@@ -17,7 +17,7 @@ class BookingsTableSeeder extends Seeder
         	 'id_employee' => 2, 
         	 'id_user' => 10, 
         	 'id_status' => 1,
-        	 'date' => date('Y-m-d',strtotime('2020-06-22')),
+        	 'date' => date('Y-m-d',strtotime('+2 day')),
         	 'start' => '08:00',
         	 'end' => '09:00', 
         	],
@@ -26,19 +26,10 @@ class BookingsTableSeeder extends Seeder
         	 'id_employee' => 3, 
         	 'id_user' => 10, 
         	 'id_status' => 1,
-        	 'date' => date('Y-m-d',strtotime('2020-06-23')),
+        	 'date' => date('Y-m-d',strtotime('+1 day')),
         	 'start' => '10:00',
         	 'end' => '11:00', 
         	],
-
-            ['id_service' => 3,
-             'id_employee' => 4, 
-             'id_user' => 11, 
-             'id_status' => 1,
-             'date' => date('Y-m-d',strtotime('2020-06-24')),
-             'start' => '09:00',
-             'end' => '11:00', 
-            ],
         ]);
     }
 }

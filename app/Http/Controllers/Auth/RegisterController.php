@@ -65,11 +65,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        /* Se añade id_role al array para definir el tipo de
+        usuario registrado, a un usuario sin privilegios por defecto
+        se le asigna el role de usuario, de lo contrario se toma el role que 
+        seleccione el administrador desde el formulario*/
+        $data['id_role'] = empty($data['id_role']) ? 3 : $data['id_role'];
 
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'id_role' => $data['id_role'],
             'phone' => $data['phone'],
         ]);
     }

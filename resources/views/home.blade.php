@@ -5,6 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8 mb-3">
             <span class="h2">Mis servicios</span>
+            @can('is-admin')
+               <span class="badge float-right badge-info text-white">Eres Administrador</span>
+            @endcan
+            @can('is-employee')
+               <span class="badge float-right badge-info text-white">Eres Empleado</span>
+            @endcan
         </div>
 
         @if (session('success'))

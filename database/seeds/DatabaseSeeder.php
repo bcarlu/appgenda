@@ -15,14 +15,14 @@ class DatabaseSeeder extends Seeder
         $this->call([
         	CategoriesSeeder::class,
             ServiceDurationSeeder::class,
+            RolesTableSeeder::class,
             UsersTableSeeder::class,
             EmployeeStatusSeeder::class,
             EmployeesTableSeeder::class,
             BookingStatusTableSeeder::class,
             EmployeeCategoryTableSeeder::class,
             ServicesTableSeeder::class,
-            BookingsTableSeeder::class,            
-            RolesTableSeeder::class,
+            BookingsTableSeeder::class,
         ]);
     }
 }
