@@ -2,4 +2,10 @@
 
 ## Sobre Appgenda
 
-Appgenda es una aplicacion web dedicada a gestionar la programación de consultas o citas por parte los usuarios de cualquier tipo de negocio que maneje sus servicios por medio de reservación de citas. Nuestro enfoque es ser una aplicacion muy facil de usar, que sea rapida y eficiente, que ayude tanto a los clientes como a los dueños de negocio a tener mas agilidad y un facil control de su calendario.
+Appgenda es una aplicacion web dedicada a gestionar la reservacion de citas en centros de estetica y belleza. Esta enfocada en ser muy facil de usar, rapida y eficiente, que ayude a los clientes a reservar una cita radida y facilmente sin demoras ni esperas y a los dueños de negocio a tener mas tiempo disponible para invertir en otras tareas mas importantes al mismo tiempo que tienen automaticamente una agenda ordenada y precisa.
+
+La aplicación está constituida por:
+
+- Página de bienvenida.
+- Página de login y de registro.
+- ...
