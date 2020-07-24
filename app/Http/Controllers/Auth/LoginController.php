@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Illuminate\Support\Facades\Auth;
+
 class LoginController extends Controller
 {
     /*
@@ -26,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    /*protected $redirectTo = RouteServiceProvider::HOME;*/
 
     /**
      * Create a new controller instance.
@@ -36,5 +38,22 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function redirectTo()
+    {
+        
+        // User role
+        $role = Auth::user()->id_role;
+        
+        /* Si el usuario es un administrador o empleado 
+        */
+        if ($role == 1 or $role == 2) {
+            return '/dashboard';
+        }
+        
+        /* Si el usuario es un usuario normal
+        */
+        return '/home';
     }
 }

@@ -4,7 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 mb-3">
-            <span class="h2">Mis servicios</span>
+            <span class="h2">
+                Mis servicios
+            </span>
             @can('is-admin')
                <span class="badge float-right badge-info text-white">Eres Administrador</span>
             @endcan
@@ -25,7 +27,8 @@
         <div class="col-md-8">
             <!--Valida si el usuario no tiene citas-->    
             @if(count($bookings) == 0)
-                <div class="alert alert-success h3 text-center" role="alert">Hola y bienvenido a Appgenda, que te parece si empezamos agendado tu primera cita, Animate, es facil y rapido! :)</div>
+                <div class="alert alert-success h3 text-center" role="alert">Hola y bienvenido a Appgenda, que te parece si empezamos agendado tu primera cita, Animate, es facil y rapido! :)
+                </div>
             @endif
             
             <!-- Valida si el usuario ya ha programado citas --> 
@@ -85,6 +88,9 @@
             @endforeach
             
             <div class="card-body fixed-bottom text-right">
+                @can('in-dashboard')
+                <a href="{{ url('/dashboard') }}" class="btn btn-warning">Dashboard</a>
+                @endcan
                 <a href="{{ Route('categories') }}" class="btn btn-primary">Reservar</a>
             </div>  
                                  

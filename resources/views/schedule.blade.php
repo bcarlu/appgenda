@@ -42,7 +42,7 @@
 					<span class="h2">{{ strftime('%A %d %b',$date['fecha']) }}</span>
 				</div>
 
-				@foreach($employeesCategories as $employeeCategory) <!-- categoria empleados -->
+				@foreach($employeesCategories as $employeeCategory) <!-- empleados que pertenecen a la categoria -->
 					
 					@foreach($employees as $employee) <!-- ciclo empleados -->
 
