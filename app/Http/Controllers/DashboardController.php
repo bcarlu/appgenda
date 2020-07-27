@@ -28,7 +28,7 @@ class DashboardController extends Controller
       $clients = User::all();
 		
   		
-    	$d = 0; /*Se asigna variable para realizar un for que recorra un numero de dias especificos*/
+    	$d = 0; /*Se asigna variable para realizar for que recorra un numero de dias especificos*/
 
     	/*Arreglo para recorrer los dias*/
     	for ($i=$d; $i <=5 ; $i++) { 

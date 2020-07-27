@@ -21,9 +21,9 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href=" @guest {{ url('/') }} @else {{ url('/home') }} @endguest 
+                <a class="navbar-brand" href=" @guest {{ url('/') }} @endguest @auth @if(Auth::user()->id_role == 1) {{ url('/dashboard') }} @else {{ url('/home') }} @endif @endauth 
                  "> 
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -42,16 +42,16 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Ingreso') }}</a>
+                                <a class="btn btn-outline-secondary font-weight-bold mr-1 my-2 my-sm-0" href="{{ route('login') }}">{{ __('Ingreso') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a>
+                                    <a class="btn btn-outline-secondary font-weight-bold my-2 my-sm-0" href="{{ route('register') }}">{{ __('Registro') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="btn btn-outline-success my-2 my-sm-0 dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
@@ -73,7 +73,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 min-vh-100" style="background-image: linear-gradient(to bottom right, #fd79a8, #a29bfe);">
             @yield('content')
         </main>
     </div>

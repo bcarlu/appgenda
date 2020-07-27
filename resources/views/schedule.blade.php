@@ -12,21 +12,21 @@
           </button>
         </div>
     @endif
-		
-		<!-- Título con el nombre e informacion del servicio y la hora actual -->
-		<div class="col-md-8 mb-3 text-center h2 text-success">
-			@foreach($services as $service)
-				{{ $service->name }}
-			@endforeach
-			<p class="h4">Duracion del servicio: {{ $service->id_duration }} @if($service->id_duration > 1) horas @else hora @endif</p>
-			<p class="h4">Son las {{ date('g:ia') }}</p>
-		</div>
-		
-		<!-- Aca se escribe la descripcion de la pagina para el cliente -->
-		<div class="h4 col-md-8 mb-3 text-center alert-warning">
-			Escoja la fecha, esteticista y hora que desee
-		</div>
 
+  
+
+		<!-- Título con el nombre e informacion del servicio y la hora actual -->
+		<div class="col-md-8 mb-2 pt-2 text-center" style="color: #2d3436;">
+			<h1 class="font-weight-bold">
+				@foreach($services as $service)
+					{{ $service->name }}
+				@endforeach
+			</h1>
+			
+		  <p class="lead">Escoja la fecha, empleado y hora que desee. Todas las fechas y horas mostradas están disponibles. Este servicio tiene una duración de {{ $service->id_duration }} @if($service->id_duration > 1) horas. @else hora. @endif
+			</p>		  
+			<!-- Son las {{ date('g:ia') }} -->
+		</div>
 
 		@foreach($dates as $date) <!-- dias y fechas de la semana -->
 			
@@ -89,13 +89,13 @@
 										@if($hour['status'] == 'disponible') <!-- if horas disponibles -->
 
 											@if(date('Ymd', $date['fecha']) == date('Ymd') && $hour['hora'] > date('G', mktime(date('G')+2, 0, 0, date('m'), date('d'), date('Y')))) <!-- Si las horas son del mismo dia se muestra disponibilidad 2 horas adelante de la hora actual -->
-												<a href="{{ url('confirmation') . '/' . $service->id . '/' . $employee->id . '/' . $date['fecha'] . '/' . $hour['hora'] . '/' . $service->id_duration }}" class="btn btn-success mr-2">
+												<a href="{{ url('confirmation') . '/' . $service->id . '/' . $employee->id . '/' . $date['fecha'] . '/' . $hour['hora'] . '/' . $service->id_duration }}" class="btn btn-outline-success mr-2">
 												{{ date('ga', strtotime($hour['hora'] . ':00')) }}
 												</a>
 											@endif 
 
 											@if(date('Ymd', $date['fecha']) > date('Ymd')) <!-- Si la reserva es para el dia siguiente o mayor se muestra el horario normal -->
-												<a href="{{ url('confirmation') . '/' . $service->id . '/' . $employee->id . '/' . $date['fecha'] . '/' . $hour['hora'] . '/' . $service->id_duration }}" class="btn btn-success mr-2">
+												<a href="{{ url('confirmation') . '/' . $service->id . '/' . $employee->id . '/' . $date['fecha'] . '/' . $hour['hora'] . '/' . $service->id_duration }}" class="btn btn-outline-success mr-2">
 												{{ date('ga', strtotime($hour['hora'] . ':00')) }}
 												</a>
 											@endif
