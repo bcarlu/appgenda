@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-4">
+        <div class="col" style="max-width: 480px;">
             <div class="card">
                 <div class="card-header">{{ __('¡Hola, ingresa tus datos para iniciar sesión!') }}</div>
 
@@ -53,7 +53,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-image: linear-gradient(to bottom right, #6c5ce7, #74b9ff); border: #6c5ce7">
                                     {{ __('Iniciar sesión') }}
                                 </button>
                             </div>

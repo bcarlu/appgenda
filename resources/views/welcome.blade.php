@@ -9,15 +9,22 @@
             </div>
             <div class="h4 alert text-light" role="alert">Programa tu cita facilmente con nuestra app, no gastes mas tiempo preguntando por fechas y horas disponibles, aquí lo tienes todo. Ingresa si tienes una cuenta o registrate para disfrutar de esta gran utilidad.</div>
             
-            @auth
-                <a class="btn btn-outline-secondary font-weight-bold" href="{{ url('/home') }}">Home</a>
+            <div class="row justify-content-center">
+                
+                    @auth
+                <a class="btn text-light font-weight-bold" href="{{ url('/home') }}" style="background-image: linear-gradient(to bottom right, #6c5ce7, #74b9ff); border: #6c5ce7">Home</a>
             @else
-                <a class="btn btn-outline-secondary font-weight-bold" href="{{ route('login') }}">Ingreso</a>
+                <a class=" col-md-5 m-1 btn text-light font-weight-bold" href="{{ route('login') }}" style="background-image: linear-gradient(to bottom right, #6c5ce7, #74b9ff); border: #6c5ce7">Ingreso</a>
 
-                @if (Route::has('register'))
-                    <a class="btn btn-outline-secondary font-weight-bold" href="{{ route('register') }}">Registro</a>
+                
+               
+                
+                    @if (Route::has('register'))
+                    <a class="col-md-5 m-1 btn text-light font-weight-bold" href="{{ route('register') }}" style="background-image: linear-gradient(to bottom right, #6c5ce7, #74b9ff); border: #6c5ce7">Registro</a>
                 @endif
             @endauth
+                
+            </div>
         </div>
     </div>
 </div>

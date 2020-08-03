@@ -37,4 +37,28 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    // Se añaden query scope para name, email y phone
+
+    public function scopeName($query, $name)
+    {
+        if ($name) {
+            return $query->where('name', 'like', "%$name%");
+        }
+    }
+
+    public function scopeEmail($query, $email)
+    {
+        if ($email) {
+            return $query->where('email', 'like', "%$email%");
+        }
+    }
+
+    public function scopePhone($query, $phone)
+    {
+        if ($phone) {
+            return $query->where('phone', 'like', "%$phone%");
+        }
+    }
 }

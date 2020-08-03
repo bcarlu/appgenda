@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Peticion inicial, redirecciona a la vista welcome
+// Ingreso a la pagina de inicio, redirecciona a la vista welcome
 Route::get('/', function () { return view('welcome');});
 
 // Rutas para login y registro con la propiedad de verificacion habilitada
@@ -36,5 +36,19 @@ Route::get('confirmation/{service}/{employee}/{date}/{start}/{duration}', 'Confi
 
 // Ruta para enviar y almacenar los datos de la cita en la base de datos
 Route::get('schedule/store/{service}/{employee}/{date}/{start}/{duration}', 'BookingController@store');
+
+/*
+** Rutas para el Dashboard
+*/
+
 // Ruta para los usuarios administradores y empleados con middleware para evitar acceso no autorizado
-Route::get('/dashboard', 'DashboardController@index');
+Route::get('/dashboard/', 'DashboardController@index');
+
+// Ruta para ver lista de usuarios
+Route::get('/dashboard/users', 'UserController@index');
+
+// Ruta para buscar usuarios en tiempo real con ajax
+/*Route::get('dashboard/users/search', 'UserController@search');*/
+
+// Ruta para ver las citas de un usuario
+Route::get('/dashboard/users/{id}', 'UserController@show');

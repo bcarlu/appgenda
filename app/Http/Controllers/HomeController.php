@@ -53,6 +53,6 @@ class HomeController extends Controller
         // Establece el locale a español para enviar a la vista
         setlocale(LC_TIME, 'es_CO.utf8');
 
-        return view('home')->with($data);      
+        return view('home', $data);      
     }
 }
