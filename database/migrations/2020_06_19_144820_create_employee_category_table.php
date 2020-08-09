@@ -14,10 +14,8 @@ class CreateEmployeeCategoryTable extends Migration
     public function up()
     {
         Schema::create('employee_category', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('id_employee')->constrained('employees');
             $table->foreignId('id_category')->constrained('categories');
-            $table->timestamps();
         });
     }
 

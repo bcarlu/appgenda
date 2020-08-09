@@ -21,14 +21,14 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background: #6c5ce7;">
             <div class="container">
-                <a class="navbar-brand" href=" @guest {{ url('/') }} @endguest @auth @if(Auth::user()->id_role == 1) {{ url('/dashboard') }} @else {{ url('/home') }} @endif @endauth 
+                <a class="navbar-brand text-light font-weight-bold" href=" @guest {{ url('/') }} @endguest @auth @if(Auth::user()->id_role == 1) {{ url('/dashboard') }} @else {{ url('/home') }} @endif @endauth 
                  "> 
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'Appgendate') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon text-light"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -42,11 +42,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="btn btn-outline-secondary font-weight-bold mr-1 my-2 my-sm-0" href="{{ route('login') }}">{{ __('Ingreso') }}</a>
+                                <a class="btn btn-outline-light font-weight-bold mr-1 my-2 my-sm-0" href="{{ route('login') }}">{{ __('Ingreso') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="btn btn-outline-secondary font-weight-bold my-2 my-sm-0" href="{{ route('register') }}">{{ __('Registro') }}</a>
+                                    <a class="btn btn-outline-light font-weight-bold my-2 my-sm-0" href="{{ route('register') }}">{{ __('Registro') }}</a>
                                 </li>
                             @endif
                         @else
@@ -73,7 +73,7 @@
             </div>
         </nav>
 
-        <main class="py-4 min-vh-100" style="background-image: linear-gradient(to bottom right, #fd79a8, #a29bfe);">
+        <main class="py-4 min-vh-100 " style="background: #dfe6e9;">
             @yield('content')
         </main>
     </div>

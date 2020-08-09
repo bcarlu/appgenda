@@ -11,18 +11,17 @@
 			
 			
 				@foreach($services as $service)
-				<div class="card mb-2 mr-2 p-2" style="width: 18rem;">
+				<a href="{{ url('/home/categories') . '/' . $service->id_category . '/services/' . $service->id . '/schedule' }}" class="btn shadow-lg p-3 mb-5 mr-1 bg-white">
+					
 				  <!-- <img src="{{ asset('img/catunas.jpg') }}" class="card-img" alt="..."> -->
 				  <!-- <div class="card-img-overlay"> -->
-				    <h5 class="card-title">
-				    
-							<b>{{ $service->name }}</b>
-				    
-				  	</h5>
-				    <p class="card-text">Descripción detallada del servicio.</p>
-				    <a href="{{ url('/home/categories') . '/' . $service->id_category . '/services/' . $service->id . '/schedule' }}" class="btn btn-primary">Escoger</a>
+				    <span class=" h2 ">				    
+							<b>{{ $service->name }}</b>				    
+				  	</span>
 				  <!-- </div> -->
-				</div>
+				
+				</a>
+				
 				@endforeach
 			
 

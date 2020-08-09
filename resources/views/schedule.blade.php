@@ -18,9 +18,9 @@
 		<!-- Título con el nombre e informacion del servicio y la hora actual -->
 		<div class="col-md-8 mb-2 pt-2 text-center" style="color: #2d3436;">
 			<h1 class="font-weight-bold">
-				@foreach($services as $service)
+				
 					{{ $service->name }}
-				@endforeach
+				
 			</h1>
 			
 		  <p class="lead">Escoja la fecha, empleado y hora que desee. Todas las fechas y horas mostradas están disponibles. Este servicio tiene una duración de {{ $service->id_duration }} @if($service->id_duration > 1) horas. @else hora. @endif

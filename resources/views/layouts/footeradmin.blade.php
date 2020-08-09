@@ -1,5 +1,6 @@
 <!-- Footer Admin -->
 <div class="card-body fixed-bottom text-right">
+  <a href="{{ url('/home') }}" class="btn btn-warning">Home</a>
   <a href="#" class="btn btn-primary">Nueva cita</a>
 	
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
