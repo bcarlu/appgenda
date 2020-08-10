@@ -24,6 +24,7 @@ class ScheduleController extends Controller
     	$service = Service::where('id', $request->service)->first();
         $bookings = Booking::where('id_status', 1)->get();
         $user = $request->user()->id;
+        $festivos = Holiday::all();
 
         // Si el usuario escoge un servicio que ya agendó y está pendiente
         foreach ($bookings as $booking) {
@@ -32,37 +33,34 @@ class ScheduleController extends Controller
             }
         }
 
-        $daycounter = 0; /*Se asigna variable para realizar un for que recorra un numero de dias especificos*/
+        $firstDay = 0; /*Se asigna variable para realizar un for que recorra un numero de dias especificos*/
 
-        /* Si son las 14:00 o 15:00, dependiendo de la duracion del servicio que el cliente este solicitando, se asigna el valor de $d a 1 para ocultar de la vista schedule el dia actual y continuar a del dia siguiente*/
+        /* Dependiendo de la duracion del servicio y la hora se define el $firstday en 1*/
         if ($service->id_duration == 1 
             && date('G') >= date('G', strtotime('15:00'))) {
-            $daycounter = 1;
+            $firstDay = 1;
         }
         if ($service->id_duration == 2 
             && date('G') >= date('G', strtotime('14:00'))) {
-            $daycounter = 1;
+            $firstDay = 1;
         }
 
-        /*Arreglo para recorrer los dias*/
-    	for ($i=$daycounter; $i <=5 ; $i++) { 
+        /*Se carga la cantidad de dias en $days*/
+    	for ($i = $firstDay; $i <= 5 ; $i++) { 
     		$days[] = $i;
     	}        
     	
-        /*Se crea array dates cargando el array days para crear las fechas*/
+        /*Se crea fechas y se cargan en $dates*/
         foreach ($days as $day) {
             $dates[] = [
                 'fecha' => 
                     mktime(0, 0, 0, 
                     date("m")  , 
-                    date("d")+$day, 
+                    date("d") + $day, 
                     date("Y")), 
                 'status' => 'laboral'
             ];           
     	}
- 
-        /*Se crea array para establecer los dias no laborales y festivos*/
-        $festivos = Holiday::all();
 
         /*Arreglo para las horas del dia*/       
         for ($i=8; $i <=17 ; $i++) { 
