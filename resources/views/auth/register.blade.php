@@ -67,17 +67,17 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <label for="password-confirm" class="col-md-12 col-form-label ">{{ __('Confirmar contraseña') }}</label>
 
                             <div class="col-md-12">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group row mb-0">
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-image: linear-gradient(to bottom right, #6c5ce7, #74b9ff); border: #6c5ce7">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" style="background: #6c5ce7; border: #6c5ce7">
                                     {{ __('Registrarme') }}
                                 </button>
                             </div>

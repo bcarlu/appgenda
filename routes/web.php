@@ -52,3 +52,7 @@ Route::get('/dashboard/users', 'UserController@index');
 
 // Ruta para ver las citas de un usuario
 Route::get('/dashboard/users/{id}', 'UserController@show');
+
+// Ruta para autenticacion con redes sociales facebook y google
+Route::get('login/{driver}', 'Auth\LoginController@redirectToProvider');
+Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallback');

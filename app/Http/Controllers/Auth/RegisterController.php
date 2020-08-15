@@ -52,7 +52,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8'],
             'phone' => ['size:10'],
         ]);
     }
@@ -65,10 +65,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        /* Se añade id_role al array para definir el tipo de
-        usuario registrado, a un usuario sin privilegios por defecto
-        se le asigna el role de usuario, de lo contrario se toma el role que 
-        seleccione el administrador desde el formulario*/
+        /* Se asigna role por defecto 
+         * a usuarios que se registran en la plataforma.
+         * Los roles de administracion y empleado 
+         * se asignan manualmente desde el dashboard.
+        */
         $data['id_role'] = empty($data['id_role']) ? 3 : $data['id_role'];
 
         return User::create([
