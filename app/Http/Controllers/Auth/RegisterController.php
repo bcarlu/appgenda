@@ -74,10 +74,16 @@ class RegisterController extends Controller
 
         return User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
+            'email' => strtolower($data['email']),
             'password' => Hash::make($data['password']),
             'id_role' => $data['id_role'],
             'phone' => $data['phone'],
+
+            /*Se añade temporalmente para pruebas, 
+            * mientras se conecta el servicio de
+            * emails con una plataforma de producción.
+            */
+            'email_verified_at' => now(), 
         ]);
     }
 }

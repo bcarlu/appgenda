@@ -56,3 +56,10 @@ Route::get('/dashboard/users/{id}', 'UserController@show');
 // Ruta para autenticacion con redes sociales facebook y google
 Route::get('login/{driver}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallback');
+
+// Ruta para formulario nuevo usuario en dashboard
+Route::get('dashboard/user/new', function () { return view('dashboard.newuser');
+})->middleware('auth', 'can:in-dashboard');
+
+// Ruta para crear nuevo usuario
+Route::post('/dashboard/user/new/create', 'UserController@create');

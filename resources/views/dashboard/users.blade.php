@@ -4,44 +4,54 @@
 <div class="container">
 	<div class="row justify-content-center">
 		<div class="col-md-8 mb-3">
-			<h2>Usuarios</h2>
+			<span class="h2">Usuarios</span >
+			<a href="{{ url('dashboard/user/new') }}" class="btn btn-success float-right">Nuevo</a>
 		</div>
+		@if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
 	</div>
 	<div class="row justify-content-center">
 		<!-- Buscador -->
 		<div class="col-md-8 mb-3">
 			<form method="GET" action="{{ url('dashboard/users') }}">
 				<!-- @csrf -->
-				<div class="input-group">
-				  <input type="search" name="name" class="form-control" placeholder="Ingrese el nombre a buscar" aria-label="Recipient's username" aria-describedby="basic-addon2">
+				<div class="input-group mb-3">
+				  <input type="search" name="name" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
 				  <div class="input-group-append">
-				    <input type="submit" class="input-group-text" id="basic-addon2" value="?">
+				    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
 				  </div>
 				</div>
 			</form>
+		<!-- Fin buscador -->
+		</div>
+		
+		<div class="col-md-8 mb-3">
+		<!-- Tarjeta de usuario -->
+		@foreach($users as $user)
+			<div class="card">
+			  <div class="card-body">
+			    <span class="h5">{{$user->name}}</span><br>
+			    <a href="{{ url('/dashboard/users') .'/'. $user->id }}" class="btn btn-primary float-right">Ver</a>
+			    <span class="card-text">{{$user->email}}</span><br>
+			    <!-- Se agrega link para enviar mensaje de whatsapp al cliente -->
+			    <a href="{{ 'https://wa.me/57' . $user->phone }}" target="blank">{{$user->phone}}</a>
+			    
+			  </div>
+		  <!-- Fin tarjeta de usuario -->
+			</div>
+		@endforeach
+
+		{{ $users->render() }}
+		<!-- Fin col -->
 		</div>
 
-		<!-- Tabla usuarios -->
-		<div class="col-md-8 mb-3">
-			<table class="table table-hover table-dark table-responsive-sm">
-		    <thead>
-		      <th>Nombre</th>
-		      <th>Email</th>
-		      <th>Celular</th>
-		    </thead>
-		    <tbody>
-		        @foreach($users as $user)
-		        <tr>
-		          <td>{{$user->name}}</td>
-		          <td>{{$user->email}}</td>
-		          <td>{{$user->phone}}</td>
-		          <td><a class="btn btn-primary" href="{{ url('/dashboard/users') .'/'. $user->id }}">Ver</a></td>
-		        </tr>
-		        @endforeach
-		    </tbody>
-			</table>
-			{{ $users->render() }}
-		</div> <!-- Fin tabla usuarios -->
+	<!-- Fin row -->
 	</div>
 </div>
 @endsection

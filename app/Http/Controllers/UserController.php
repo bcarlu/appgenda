@@ -38,9 +38,21 @@ class UserController extends Controller
     }
 
     
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $name = $request->name;
+        $email = $request->email;
+        $phone = $request->phone;
+
+        User::create([
+            'name' => $name,
+            'email' => strtolower($email),
+            'phone' => $phone,
+            'id_role' => 3,
+            'password' => bcrypt('12345678'),
+        ]);
+
+        return redirect('dashboard/users')->with('success','Usuario creado con exito');
     }
 
     

@@ -90,7 +90,15 @@
                                      @endif
                                 @endforeach
                             </span>
-                            <a href="#" class="btn btn-warning float-right">Editar</a>
+                            <div class="btn-group float-right">
+                              <button type="button" class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Editar
+                              </button>
+                              <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Reagendar</a>
+                                <a class="dropdown-item" href="#">Cancelar</a>
+                              </div>
+                            </div>
                         </div>                
                     </div>
                 @endif

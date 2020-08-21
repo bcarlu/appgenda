@@ -25,5 +25,14 @@ class UsersTableSeeder extends Seeder
             'id_role' => 1,
             'phone' => '123',
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'Diego',
+            'email' => 'diego@correo.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('12345678'),
+            'id_role' => 1,
+            'phone' => '123',
+        ]);
     }
 }
