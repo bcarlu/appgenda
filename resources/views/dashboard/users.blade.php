@@ -39,7 +39,11 @@
 			    <span class="h5">{{$user->name}}</span><br>
 			    <a href="{{ url('/dashboard/users') .'/'. $user->id }}" class="btn btn-primary float-right">Ver</a>
 			    <span class="card-text">{{$user->email}}</span><br>
-			    <!-- Se agrega link para enviar mensaje de whatsapp al cliente -->
+
+			    <!-- Se agrega link al user phone 
+			    	para redirigir directamente 
+			    	al whatsapp del cliente 
+			    -->
 			    <a href="{{ 'https://wa.me/57' . $user->phone }}" target="blank">{{$user->phone}}</a>
 			    
 			  </div>
