@@ -31,10 +31,13 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'mailchimp' => [
-        'apiKey' => env('MAILCHIMP_API_KEY'),
-        'server' => env('MAILCHIMP_SERVER'),
-    ],
+    /** Pendiente integrar mailchimp con Laravel */
+    /** 
+    * 'mailchimp' => [
+    * 'apiKey' => env('MAILCHIMP_API_KEY'),
+    * 'server' => env('MAILCHIMP_SERVER'),
+    * ],
+     */
     
     // OAUTH
     'facebook' => [

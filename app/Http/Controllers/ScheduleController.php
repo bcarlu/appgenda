@@ -41,11 +41,6 @@ class ScheduleController extends Controller
         $days = new Booking();
         $dates = $days->setDays(4, $service->id_duration);
         $hours = $days->setHoursByDay(8, 17);
-
-        /*Arreglo para las horas del dia*/       
-        // for ($i=8; $i <=17 ; $i++) { 
-        //     $hours[] = [ 'hora' =>$i, 'status' => 'disponible'];
-        // }
         
         /*Se establece locale a español*/        
         setlocale(LC_TIME, 'es_CO.utf8');
