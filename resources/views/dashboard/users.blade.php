@@ -6,23 +6,30 @@
 		<div class="col-md-8 mb-3">
 			<span class="h2">Usuarios</span >
 			<a href="{{ url('dashboard/user/new') }}" class="btn btn-success float-right">Nuevo</a>
-		</div>
-		@if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
+		</div>		
 	</div>
+	
+	<div class="row justify-content-center">
+		<div class="col-md-8 mb-3">
+			@if (session('success'))
+	      <div class="alert alert-success alert-dismissible fade show" role="alert">
+	        {{ session('success') }}
+	        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	            <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+		  @endif
+		</div>
+	</div>
+	
+
 	<div class="row justify-content-center">
 		<!-- Buscador -->
 		<div class="col-md-8 mb-3">
 			<form method="GET" action="{{ url('dashboard/users') }}">
 				<!-- @csrf -->
 				<div class="input-group mb-3">
-				  <input type="search" name="name" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+				  <input type="search" name="name" class="form-control" placeholder="Busca por nombre, email o celular" aria-label="Recipient's username" aria-describedby="button-addon2">
 				  <div class="input-group-append">
 				    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
 				  </div>
@@ -57,5 +64,8 @@
 
 	<!-- Fin row -->
 	</div>
+
+	@include('layouts.footeradmin')
+	
 </div>
 @endsection

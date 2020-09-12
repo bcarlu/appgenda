@@ -58,5 +58,8 @@
 			@endforeach
 		</div>
 	</div>
+
+  @include('layouts.footeradmin')
+  
 </div>
 @endsection

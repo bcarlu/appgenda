@@ -14,6 +14,7 @@ return [
     |
     */
 
+    // MAIL
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
@@ -30,6 +31,12 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'mailchimp' => [
+        'apiKey' => env('MAILCHIMP_API_KEY'),
+        'server' => env('MAILCHIMP_SERVER'),
+    ],
+    
+    // OAUTH
     'facebook' => [
     'client_id' => env('FACEBOOK_CLIENT_ID'),
     'client_secret' => env('FACEBOOK_CLIENT_SECRET'),

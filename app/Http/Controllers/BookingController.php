@@ -8,6 +8,7 @@ use App\Service;
 use App\Employee;
 use App\EmployeeCategory;
 use App\Mail\ReservaRegistrada;
+use App\Mail\NuevaCita;
 use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
@@ -79,6 +80,13 @@ class BookingController extends Controller
 
             // Se envia notificacion con los datos de la cita.
             Mail::to($emailuser)->send(new ReservaRegistrada($data));
+            
+            /* Definir variables y descomentar cuando
+            se configure el mailer de producción */
+            /* foreach ([$admin, $employee->email] as $recipient) {
+                Mail::to($recipient)->send(new NuevaCita($data));
+            }*/
+            
 
             // Y se redirecciona al home con mensaje de exito.
             return redirect('/home')->with('success', 'Su reserva se ha registrado con exito! Nos vemos pronto ;)');

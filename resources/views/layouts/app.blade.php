@@ -21,7 +21,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="@can('in-dashboard') background: #fdcb6e; @else background: #6c5ce7; @endcan">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="@can('in-dashboard') background: #74b9ff; @else background: #6c5ce7; @endcan">
             <div class="container">
                 <a class="navbar-brand text-light font-weight-bold" href=" @guest {{ url('/') }} @endguest @auth @if(Auth::user()->id_role == 1) {{ url('/dashboard') }} @else {{ url('/home') }} @endif @endauth 
                  "> 

@@ -24,8 +24,7 @@
 			</h1>
 			
 		  <p class="lead">Escoja la fecha, empleado y hora que desee. Todas las fechas y horas mostradas están disponibles. Este servicio tiene una duración de {{ $service->id_duration }} @if($service->id_duration > 1) horas. @else hora. @endif
-			</p>		  
-			<!-- Son las {{ date('g:ia') }} -->
+			</p>
 		</div>
 
 		@foreach($dates as $date) <!-- dias y fechas de la semana -->
@@ -36,7 +35,7 @@
 				@endif
 			@endforeach
 			
-			@if($date['status'] == 'laboral') <!-- If para mostrar solo dias laborales -->
+			@if($date['status'] == 'workingDay') <!-- If para mostrar solo dias laborales -->
 				<div class="col-md-8 mb-3">
 					<hr>
 					<span class="h2">{{ strftime('%A %d %b',$date['fecha']) }}</span>

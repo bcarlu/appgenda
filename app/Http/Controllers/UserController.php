@@ -50,6 +50,7 @@ class UserController extends Controller
             'phone' => $phone,
             'id_role' => 3,
             'password' => bcrypt('12345678'),
+            'email_verified_at' => now(),
         ]);
 
         return redirect('dashboard/users')->with('success','Usuario creado con exito');

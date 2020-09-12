@@ -19,7 +19,7 @@ class BookingStatusTableSeeder extends Seeder
       	['status' => 'Cancelada'],
       	['status' => 'Realizada'],
         ['status' => 'Incumplida'],
-        ['status' => 'Fin Automatico'],
+        ['status' => 'Finalizado sistema'],
       ]);
     }
 }

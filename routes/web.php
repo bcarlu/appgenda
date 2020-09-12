@@ -63,3 +63,11 @@ Route::get('dashboard/user/new', function () { return view('dashboard.newuser');
 
 // Ruta para crear nuevo usuario
 Route::post('/dashboard/user/new/create', 'UserController@create');
+
+// Ruta para ver la agenda con las citas agendadas
+Route::get('/dashboard/schedule', 'DashboardController@showSchedule');
+
+// Ruta para agendar cita para un cliente desde el dashboard
+Route::get('/dashboard/services', 'DashboardController@showServices');
+
+Route::get('/dashboard/service/{id}', 'DashboardController@showAvailability');
