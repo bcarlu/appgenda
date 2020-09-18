@@ -12,14 +12,14 @@
             <div class="row justify-content-center">
                 
             @auth
-                <a class="btn text-light font-weight-bold" href="{{ url('/home') }}" style="background: #6c5ce7; border: #6c5ce7">Home</a>
+                <a class="btn text-light font-weight-bold" href="{{ secure_url('/home') }}" style="background: #6c5ce7; border: #6c5ce7">Home</a>
             @else
                 <a class=" col-md-5 m-1 btn text-light font-weight-bold" href="{{ route('login') }}" style="background: #6c5ce7; border: #6c5ce7">Ingreso con correo</a>
 
                 <!-- Ingreso con facebook -->
-                <a class=" col-md-5 m-1 btn text-light font-weight-bold" href="{{ url('login/facebook') }}" style="background: #0984e3; border: #6c5ce7">Ingreso con facebook</a>
+                <a class=" col-md-5 m-1 btn text-light font-weight-bold" href="{{ secure_url('login/facebook') }}" style="background: #0984e3; border: #6c5ce7">Ingreso con facebook</a>
                 
-                <a class=" col-md-5 m-1 btn text-light font-weight-bold" href="{{ url('login/google') }}" style="background: #d63031; border: #6c5ce7">Ingreso con google</a>
+                <a class=" col-md-5 m-1 btn text-light font-weight-bold" href="{{ secure_url('login/google') }}" style="background: #d63031; border: #6c5ce7">Ingreso con google</a>
                 
                 @if (Route::has('register'))
                 <a class="col-md-5 m-1 btn text-light font-weight-bold" href="{{ route('register') }}" style="background: #6c5ce7; border: #6c5ce7">Registro</a>

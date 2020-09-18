@@ -10,20 +10,20 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ url('js/app.js') }}" defer></script>
+    <script src="{{ secure_url('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ url('css/app.css') }}" rel="stylesheet">
+    <link href="{{ secure_url('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="@can('in-dashboard') background: #74b9ff; @else background: #6c5ce7; @endcan">
             <div class="container">
-                <a class="navbar-brand text-light font-weight-bold" href=" @guest {{ url('/') }} @endguest @auth @if(Auth::user()->id_role == 1) {{ url('/dashboard') }} @else {{ url('/home') }} @endif @endauth 
+                <a class="navbar-brand text-light font-weight-bold" href=" @guest {{ secure_url('/') }} @endguest @auth @if(Auth::user()->id_role == 1) {{ secure_url('/dashboard') }} @else {{ secure_url('/home') }} @endif @endauth 
                  "> 
                     {{ config('app.name', 'Appgendate') }}
                 </a>
